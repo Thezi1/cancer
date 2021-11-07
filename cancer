@@ -1,0 +1,48 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+N=100
+M=100
+x0=np.zeros(N-1)
+x=np.linspace(0,N,N+1)
+z=np.linspace(0,M,M+1)
+v=np.zeros(N)
+P=np.zeros(M)
+v[0]=2
+dvdz=0.1
+dvdx=0
+ds=0.1/(np.cos(np.pi/4))
+kuy=[]
+yuk=[]
+uyk=[]
+
+for i in range(0,N-1):
+    v[i+1]=v[i]+dvdz*z[i+1]
+    P[i + 1] = P[i] - ((dvdz) / ((v[0] + dvdz * z[i + 1]) ** 2)) * ds
+    z[i + 1] = z[i] + v[i] * P[i] * ds
+    kuy.append(abs(v[i]))
+    yuk.append(abs(z[i]))
+
+for j in range(0,N-1):
+    v[j+1]=v[j]+dvdx*x[j+1]
+    P[j + 1] = P[j] - ((dvdx) / ((v[0] + dvdx * x[j + 1]) ** 2)) * ds
+    x[j + 1] = x[j] + v[j] * P[j] * ds
+    uyk.append(abs(x[j]))
+
+
+bruh=int(input("Apakah nilai dv/dx sama dengan nol atau tidak? "))
+
+if bruh == 1:
+    ax = plt.axes(projection='3d')
+    ax.plot(yuk, kuy, yuk, color='red')
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
+    plt.show()
+elif bruh == 0:
+    ax = plt.axes(projection='3d')
+    ax.plot(uyk, kuy, yuk, color='red')
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
+    plt.show()
