@@ -30,7 +30,7 @@ for j in range(0,N-1):
     uyk.append(abs(x[j]))
 
 
-bruh=int(input("Apakah nilai dv/dx sama dengan nol atau tidak? "))
+bruh=int(input("Apakah nilai dv/dx sama dengan nol atau tidak? (Input 1 jika iya//Input 0 jika tidak) "))
 
 if bruh == 1:
     ax = plt.axes(projection='3d')
