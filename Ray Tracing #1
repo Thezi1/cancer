@@ -1,0 +1,64 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+#constant
+ds = 0.1
+N = 202
+theta = np.pi/3
+dvdz = 0.1
+dvdx= 0
+
+#Not Constant
+Px=np.zeros(N)
+Pz=np.zeros(N)
+vx=np.zeros(N)
+vz=np.zeros(N)
+x=np.zeros(N)
+z=np.zeros(N)
+x[0]=0
+z[0]=0
+vx[0]=2
+vz[0]=2
+Px[0]=np.cos(theta)/vx[0]
+Pz[0]=np.cos(theta)/vz[0]
+x[1]= x[0] + Px[0]*vx[0]*ds
+z[1]= z[0] + Pz[0]*vz[0]*ds
+dpx=np.zeros(N)
+dpz=np.zeros(N)
+dpz[0] = -dvdz/(vz[0]**2)
+xfin=[]
+zfin=[]
+
+for i in range(N-2):
+    Px[i+1]=Px[i]+(dpx[i] * ds)
+    vx[i+1]=vx[i]+(dvdx * x[i])
+    k1x = Px[i+1]*vx[i+1]
+    k2x = (Px[i+1]+ds)*(vx[i+1]+ds)
+    x[i+2]=x[i+1]+ 0.5*k1x + 0.5*k2x
+    komi=x[i+2]
+    xfin.append(komi)
+
+for j in range(N-2):
+    Pz[j + 1] = Pz[j] + (dpz[j] * ds)
+    vz[j + 1] = vz[j] + (dvdz * z[j])
+    k1z = Pz[j+1]*vz[j+1]
+    k2z = (Pz[i+1]+ds)*(vz[j+1]+ds)
+    z[j+2]=z[i+1] + 0.5*k1z + 0.5*k2z
+    nomi=z[j+2]
+    zfin.append(nomi)
+
+xfin.insert(0, x[0])
+xfin.insert(1, x[1])
+xfin = np.delete(xfin, N-1)
+
+zfin.insert(0, z[0])
+zfin.insert(1, z[1])
+zfin = np.delete(zfin, N-1)
+
+print(xfin)
+print(zfin)
+
+plt.plot(xfin,zfin)
+plt.show()
+
+#1.883100318026261
