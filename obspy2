@@ -1,0 +1,7 @@
+import obspy
+nig = obspy.read("https://examples.obspy.org/example_local_earthquake_3stations.mseed")
+print(nig)
+
+kuy = nig[2]
+print(kuy)
+kuy.plot()
