@@ -1,0 +1,14 @@
+import numpy as np 
+from obspy.core import UTCDateTime
+time=UTCDateTime("2002-11-15T09:00:00")
+time2=UTCDateTime()
+time3=(time2+(3600*7)-time)
+time5 =(time3/(3600))
+space = 0
+print(time2)
+print("Jumlah jam sejak 15 November 2002, pukul 09.00 dengan spasi", str(int(space)), "jam :", str(int(time5)))
+
+for i in range(19):
+    time5 = time5 + 12
+    space = space + 12
+    print("Jumlah jam sejak 15 November 2002, pukul 09.00 dengan spasi", str(int(space)), "jam :", str(int(time5)))
