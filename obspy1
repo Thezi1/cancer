@@ -1,0 +1,12 @@
+from obspy.core import UTCDateTime
+time=UTCDateTime("2002-11-15")
+time2=UTCDateTime()
+time3=time2-time
+time4 = str(time3/(3600*24))
+time5 = str(time3/(3600))
+time6 = str(time3/(60))
+print(time2)
+print("Days since birth = " + time4)
+print("Hours since birth = " + time5)
+print("Minutes since birth = " + time6)
+print("Seconds since birth = " + str(time3))
