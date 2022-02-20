@@ -1,0 +1,7 @@
+nig = obspy.read("https://examples.obspy.org/array_yellowknife_2012-08-14.mseed")
+print(nig)
+
+com = nig[2]
+print(com)
+time = UTCDateTime("2012-08-14T02:30:00.000000Z")
+com.plot(starttime=time,endtime=time+(10*60))
